@@ -15,13 +15,13 @@ char  *checker(char **input_arr)
 	if (path == NULL)
 	{
 		perror("Error getting PATH");
-		exit (1);
+		exit(1);
 	}
 	copy = strdup(path);
 	if (copy == NULL)
 	{
 		perror("Error allocating memory for copy");
-		exit (1);
+		exit(1);
 	}
 	comm_path = strtok(copy, ":");
 	while (comm_path != NULL)
