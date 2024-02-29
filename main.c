@@ -11,29 +11,32 @@ int main(void)
 	int i;
 
 	i = 0;
-	while (strcmp(input, "exit"))
+	while (1)
 	{
-	input = get_input();
-	input_arr = tokenizer(input);
-	full_path = checker(input_arr);
-	if (full_path)
-	{
-		strcpy(input_arr[0], full_path);
-		executer(input_arr);
-	}
-	else
-	{
+		input = get_input();
+		if (strcmp(input, "exit") == 0)
+		{
+			free(input);
+			break;
+		}
 
-		printf("Invalid command\n");
-	}
-	while (input_arr[i])
-	{
-		free(input_arr[i]);
-		i++;
-	}
-	free(full_path);
-	free(input_arr);
-	free(input);
+		input_arr = tokenizer(input);
+		full_path = checker(input_arr);
+		if (full_path)
+		{
+			strcpy(input_arr[0], full_path);
+			executer(input_arr);
+		}
+		else
+			printf("Invalid command\n");
+		while (input_arr[i])
+		{
+			free(input_arr[i++]);
+			i++;
+		}
+		free(full_path);
+		free(input_arr);
+		free(input);
 	}
 	return (0);
 }
